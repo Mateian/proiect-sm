@@ -12,10 +12,14 @@
 		<main>
 			<div class="main-content">
 				<div>
+					<label for="lcd-prompt">Notificare</label><br>
+					<input type="text" name="lcd-prompt" id="lcd-pormpt"> <br>
+					<button onclick="changeText()">Notificare</button><br>
 					<label for="lcd-text">Text LCD</label><br>
-					<input type="text" name="lcd-text"> <br>
+					<input type="text" name="lcd-text" id="lcd-text"> <br>
 				</div>
 				<button onclick="pornesteSistem()">Porneste sistem</button>
+				<button onclick="opresteSistem()">Opreste sistem</button>
 				<div class="consola-content">
 					<p id="mesaj-returnat">&gt; </p>
 				</div>

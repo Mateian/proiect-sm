@@ -2,21 +2,48 @@ var interval = 0;
 var apasare = 0;
 var stare = "";
 
+function changeText() {
+	const text = document.getElementById("lcd-text").value;
+	fetch("php/schimba_text.php", {
+		method: "POST",
+		headers: {
+			"Content-Type": "application/x-www-form-urlencoded"
+		},
+		body: "lcd-prompt=" + encodeURIComponent(text)
+	})
+	.then(raspuns => raspuns.text())
+	.then(text => {
+		document.getElementById("mesaj-returnat").innerHTML += text + "<br> &gt; ";
+	})
+}
+
 function pornesteSistem() {
+
+	const text = document.getElementById("lcd-text").value;
+	if(text.length > 16) {
+		alert("Introduceti o valoare de maxim 16 caractere!");
+		return;
+	}
 	if(apasare == 0) {
 		apasare = 1;
-		fetch("php/porneste.php")
+		fetch("php/porneste.php", {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/x-www-form-urlencoded"
+			},
+			body: "lcd-text=" + encodeURIComponent(text)
+		})
 		.then(raspuns => raspuns.text())
 		.then(text => {
 			document.getElementById("mesaj-returnat").innerHTML += text + "<br> &gt; ";
 			interval = setInterval(actualizeazaStare, 300);
 		})
 		.catch(error => document.getElementById("mesaj-returnat").innerHTML += error + "<br> > ");
+		apasare = 1;
 	} else {
-		clearInterval(interval);
-		apasare = 0;
+		console.log("deja ruleaza un script");
 	}
-
+	
 }
 
 function actualizeazaStare() {
@@ -29,4 +56,14 @@ function actualizeazaStare() {
 			}
 		})
 		.catch(error => document.getElementById("mesaj-returnat").innerHTML += error + "<br> > ");
+}
+
+function opresteSistem() {
+	apasare = 0;
+	clearInterval(interval);
+	fetch("php/opreste.php")
+	.then(raspuns => raspuns.text())
+	.then(text => {
+		document.getElementById("mesaj-returnat").innerHTML += text + "<br> > "
+	})
 }

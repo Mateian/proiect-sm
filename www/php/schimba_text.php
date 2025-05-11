@@ -9,12 +9,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Concatenează și trimite ca parametru în shell_exec
     if($lcd_text == "") {
-    	$cmd = "sudo /usr/bin/python3 /var/www/python/main.py > /var/www/out.log 2>&1 &"; 
+        $cmd = "sudo /usr/bin/python3 /var/www/python/schimba_text.py > /var/www/out.log 2>&1 &";
     } else {
-    	$cmd = "sudo /usr/bin/python3 /var/www/python/main.py $text_scurtat > /var/www/out.log 2>&1 &";
+        $cmd = "sudo /usr/bin/python3 /var/www/python/schimba_text.py $text_scurtat > /var/www/out.log 2>&1 &";
     }
-    shell_exec($cmd);
+    echo shell_exec($cmd);
 
-    echo "Alarma a fost pornită.";
+    echo "Textul a fost schimbat.";
 }
 ?>
