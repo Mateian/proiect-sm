@@ -39,7 +39,6 @@ function pornesteSistem() {
 			interval = setInterval(actualizeazaStare, 300);
 		})
 		.catch(error => document.getElementById("mesaj-returnat").innerHTML += error + "<br> > ");
-		apasare = 1;
 	} else {
 		console.log("deja ruleaza un script");
 	}
@@ -54,6 +53,31 @@ function actualizeazaStare() {
 				document.getElementById("mesaj-returnat").innerHTML += text + "<br> > ";
 				stare = text;
 			}
+			if(stare == "Foc detectat!") {
+                       		if(confirm("Alerta de incendiu! Doriti sa anuntati autoritatile?")) {
+                                	const emailData = {
+                                        	to: "mateiprogamer@gmail.com",
+                                                subject: "Proiect SM - Sistem incendiu",
+                                                message: "Acesta este un test. Sistemul a detectat un incendiu!"
+                                        };
+                                        fetch("php/trimite_email.php", {
+                                                method: "POST",
+                                                headers: {
+                                                        "Content-Type": "application/json"
+                                                },
+                                                body: JSON.stringify(emailData)
+                                        })
+                                        .then(raspuns => raspuns.json())
+                                        .then(data => {
+                                                console.log(data);
+                                                alert(data.message);
+                                        })
+                                        .catch(error => {
+                                                console.error("Eroare: ", error);
+                                        });
+                                }
+                        }
+
 		})
 		.catch(error => document.getElementById("mesaj-returnat").innerHTML += error + "<br> > ");
 }

@@ -36,6 +36,9 @@ time.sleep(2)
 LCD.lcd_string("", LCD.LCD_LINE_1)
 time.sleep(1)
 
+first_lcd_text = ""
+second_lcd_text = ""
+
 if(len(sys.argv) >= 2):
     lcd_text = ""
     for i in range(1, len(sys.argv)):
@@ -61,7 +64,7 @@ try:
     while True:
         if is_stopped() == True:
             break
-        if is_fire() == 1:
+        if is_fire():
             with open("/var/www/python/stare.txt", "w") as f:
                 f.write("Foc detectat!")
             if(len(sys.argv) >= 2):
@@ -77,8 +80,6 @@ try:
                 GPIO.output(status_channel, GPIO.HIGH)
                 time.sleep(0.25)
             else:
-                with open("/var/www/python/stare.txt", "w") as f:
-                    f.write("Totul este in regula.")
                 LCD.lcd_string("   Incendiu!", LCD.LCD_LINE_1)
                 LCD.lcd_string(" Spre evacuare! ", LCD.LCD_LINE_2)
                 
@@ -94,7 +95,7 @@ try:
                                 
         else:
             with open("/var/www/python/stare.txt", "w") as f:
-                f.write("")
+                    f.write("Totul este in regula.")
             LCD.lcd_string(str(datetime.now().strftime("%H:%M:%S %d-%m")), LCD.LCD_LINE_2)
             time.sleep(0.5)
 except KeyboardInterrupt:

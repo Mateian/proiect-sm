@@ -1,1 +1,2 @@
-text schimbat
+/var/www/python/main.py:21: RuntimeWarning: This channel is already in use, continuing anyway.  Use GPIO.setwarnings(False) to disable warnings.
+  GPIO.setup(status_channel, GPIO.OUT)
