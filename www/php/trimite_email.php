@@ -7,8 +7,8 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
 	$to = $data['to'];
 	$subject = $data['subject'];
 	$message = $data['message'];
-	$headers = 'From: Matei <matei-andrei.bejenaru@student.tuiasi.ro>' . "\r\n" .
-		'Reply-To: matei-andrei.bejenaru@student.tuiasi.ro' . "\r\n" .
+	$headers = 'From: Matei <your@email.com>' . "\r\n" .
+		'Reply-To: your@email.com' . "\r\n" .
 		'Content-Type: text/plain; charset=UTF-8';
 
 	if(mail($to, $subject, $message, $headers)) {
