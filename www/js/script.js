@@ -56,7 +56,7 @@ function actualizeazaStare() {
 			if(stare == "Foc detectat!") {
                        		if(confirm("Alerta de incendiu! Doriti sa anuntati autoritatile?")) {
                                 	const emailData = {
-                                        	to: "matei-andrei.bejenaru@student.tuiasi.ro",
+                                        	to: "mateiprogamer@gmail.com",
                                                 subject: "Proiect SM - Sistem incendiu",
                                                 message: "Acesta este un test. Sistemul a detectat un incendiu!"
                                         };

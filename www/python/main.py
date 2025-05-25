@@ -58,7 +58,7 @@ def is_stopped():
     return False
 
 def is_fire():
-    return not GPIO.input(flame_channel)
+    return not GPIO.input(flame_channel) and not GPIO.input(smoke_channel)
 
 try:
     while True:
