@@ -16,9 +16,11 @@ GPIO.setmode(GPIO.BOARD)
 flame_channel = 3
 smoke_channel = 5
 status_channel = 40
+pump_channel = 38
 GPIO.setup(flame_channel, GPIO.IN)
 GPIO.setup(smoke_channel, GPIO.IN)
 GPIO.setup(status_channel, GPIO.OUT)
+GPIO.setup(pump_channel, GPIO.OUT)
 GPIO.setwarnings(False)
 GPIO.setup(LCD.LCD_E, GPIO.OUT)  # E
 GPIO.setup(LCD.LCD_RS, GPIO.OUT) # RS
@@ -65,6 +67,7 @@ try:
         if is_stopped() == True:
             break
         if is_fire():
+            GPIO.output(pump_channel, GPIO.HIGH)
             with open("/var/www/python/stare.txt", "w") as f:
                 f.write("Foc detectat!")
             if(len(sys.argv) >= 2):
@@ -94,6 +97,7 @@ try:
                 time.sleep(0.25)
                                 
         else:
+            GPIO.output(pump_channel, GPIO.LOW)
             with open("/var/www/python/stare.txt", "w") as f:
                     f.write("Totul este in regula.")
             LCD.lcd_string(str(datetime.now().strftime("%H:%M:%S %d-%m")), LCD.LCD_LINE_2)
