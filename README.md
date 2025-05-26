@@ -16,6 +16,7 @@ Tema **„Sistem de alarmă incendiu cu Raspberry Pi Zero”** a fost aleasă di
 - semnalizare vizuală (LED-uri)
 - afișaj pe LCD
 - interacțiune printr-o interfață web
+- activare pompă
 
 ---
 
@@ -27,12 +28,14 @@ Proiectul presupune construirea unui sistem de alarmă pentru incendii folosind 
 - **Senzor IR** – detecție de flacără
 - **LCD 16x2** – afișare mesaje de stare
 - **LED-uri** – semnalizare vizuală
+- **Mini Pompă submersibilă** - stingere incendiu
 - **Interfață web** – control și monitorizare sistem
 
 Funcționalitate generală:
 
 - Monitorizarea continuă a senzorilor
 - Afișarea mesajelor de stare pe LCD
+- Stingerea incendiului cu ajutorul pompei
 - LED verde = sistem activ, LED roșu / verde alternativ = alarmă
 - Notificare în interfața web și posibilitatea de trimitere email către autorități
 
@@ -49,7 +52,7 @@ Proiectul demonstrează aplicabilitatea **sistemelor embedded** în:
 Este un exemplu concret de integrare hardware-software și de automatizare, oferind experiență practică în:
 
 - achiziția și prelucrarea datelor de la senzori
-- control hardware (GPIO, LED-uri, LCD)
+- control hardware (GPIO, LED-uri, LCD, pompă)
 - dezvoltare backend & frontend pentru interfață utilizator
 - comunicare web și trimitere de notificări
 
@@ -62,6 +65,7 @@ Este un exemplu concret de integrare hardware-software și de automatizare, ofer
 Cerințe inițiale:
 
 - Detectarea simultană a fumului și flăcării
+- Activare pompă în caz de incendiu
 - Semnalizare vizuală și afișare pe LCD
 - Control din interfață web
 - Trimiterea automată a unui email în caz de urgență
@@ -72,11 +76,12 @@ Cerințe inițiale:
 - **Senzori:** MQ-2 pentru fum/gaz, senzor IR pentru flacără
 - **LED-uri:** Verde (activ), Roșu (alarmă)
 - **LCD 16x2:** Mesaje de stare și alertă
+- **Pompă submersibilă** Stingere incendiu
 - **Web server:** PHP + HTML + JS pentru interfață control
 
 ### ⚙️ Implementare
 
-- Script **Python** rulează permanent, monitorizează senzori, actualizează LCD și LED-uri
+- Script **Python** rulează permanent, monitorizează senzori, actualizează LCD și LED-uri, pornește pompa
 - **Fișiere text** utilizate pentru comunicarea dintre scriptul Python și serverul PHP
 - **Server web:** HTML + PHP pentru afișare, control sistem și notificări
 - **Email alert:** PHP `mail()` configurat cu antete și server local
@@ -101,6 +106,7 @@ Cerințe inițiale:
 - 🌫️ **Senzor MQ-2 (fum/gaz)**
 - 🔥 **Senzor IR digital (flacără)**
 - 📺 **LCD1602 HD44780**
+- ⛽ **Mini Pompă de apă submersibilă**
 - 💡 **LED-uri** (verde și roșu)
 
 ---
